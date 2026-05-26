@@ -27,7 +27,7 @@ exports.login = (req, res) => {
           role: "admin",
         };
 
-        return res.redirect("/admin/dashboard");
+        return res.redirect("/");
       }
     }
 
@@ -49,7 +49,7 @@ exports.login = (req, res) => {
             role: "mahasiswa",
           };
 
-          return res.redirect("/users/dashboard");
+          return res.redirect("/");
         }
       }
 
@@ -58,8 +58,22 @@ exports.login = (req, res) => {
   });
 };
 
+exports.dashboard = (req, res) => {
+  res.render("admin/dashboard", {
+    title: "Dashboard Admin",
+    user: req.session.user,
+  });
+};
+
+exports.dashboard = (req, res) => {
+  res.render("users/dashboard", {
+    title: "Dashboard Users",
+    user: req.session.user,
+  });
+};
+
 exports.logout = (req, res) => {
   req.session.destroy(() => {
-    res.redirect("/login");
+    res.redirect("/");
   });
 };

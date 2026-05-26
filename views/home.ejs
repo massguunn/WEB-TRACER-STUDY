@@ -2,35 +2,220 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title><%= title %></title>
 
+    <!-- FONT -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ICON -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <!-- CSS -->
     <link rel="stylesheet" href="/css/home.css" />
   </head>
+
   <body>
+    <!-- NAVBAR -->
     <nav class="navbar">
-      <div class="logo">Tracer Study</div>
+      <div class="logo">
+        <i class="fa-solid fa-graduation-cap"></i>
+        Tracer Study
+      </div>
+
+      <!-- HAMBURGER -->
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
 
       <ul class="nav-links">
-        <li><a href="#">Beranda</a></li>
-        <li><a href="berita">Berita</a></li>
+        <li><a href="/">Beranda</a></li>
+
+        <li><a href="#">Berita</a></li>
+
         <li><a href="#">Statistik</a></li>
+
         <li><a href="#">Publikasi</a></li>
-        <li><a href="#">Isi Kuesioner</a></li>
-        <li><a href="login">login</a></li>
+
+        <% if (!user) { %>
+
+        <li>
+          <a href="/login" class="login-btn"> Login </a>
+        </li>
+
+        <% } else { %> <% if (user.role === "admin") { %>
+
+        <li class="dropdown">
+          <a href="#">
+            Kelola Data
+            <i class="fa-solid fa-chevron-down"></i>
+          </a>
+
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#"> Data Alumni </a>
+            </li>
+
+            <li>
+              <a href="#"> Data Survey </a>
+            </li>
+
+            <li>
+              <a href="#"> Data Berita </a>
+            </li>
+
+            <li>
+              <a href="#"> Data Admin </a>
+            </li>
+          </ul>
+        </li>
+
+        <% } %>
+
+        <li>
+          <a href="/logout" class="logout-btn"> Logout </a>
+        </li>
+
+        <% } %>
       </ul>
     </nav>
 
-    <section class="hero">
-      <h1>Selamat Datang di Website Tracer Study</h1>
-      <p>
-        Sistem tracer study alumni untuk memantau perkembangan karir, evaluasi
-        lulusan, dan peningkatan kualitas pendidikan.
-      </p>
+    <!-- CONTENT -->
+    <% if (!user) { %>
 
-      <button>Mulai Isi Kuesioner</button>
+    <!-- HERO -->
+
+    <section class="hero">
+      <div class="hero-content">
+        <!-- <span class="badge"> Fakultas Teknik </span> -->
+
+        <h1 class="hero-title">
+          <span>Tracer Study Alumni</span>
+          Fakultas Teknik
+          <br />
+          Universitas Hamzanwadi
+        </h1>
+
+        <p>
+          Platform tracer study untuk memantau perkembangan alumni, evaluasi
+          lulusan, dan peningkatan kualitas pendidikan.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="/login">
+            <button class="primary-btn">Mulai Isi Kuesioner</button>
+          </a>
+
+          <button class="secondary-btn">Pelajari Lebih Lanjut</button>
+        </div>
+      </div>
     </section>
 
-    <footer>Tracer Study dibuat dengan ❤ oleh Gunawan Rohadi, S.Kom</footer>
+    <% } else if (user.role === "mahasiswa") { %>
+
+    <!-- DASHBOARD MAHASISWA -->
+
+    <section class="dashboard-section">
+      <div class="welcome-box">
+        <div>
+          <span class="badge-dashboard"> Dashboard Mahasiswa </span>
+
+          <h1>Halo, <%= user.nama %> 👋</h1>
+
+          <p>Selamat datang kembali di sistem tracer study alumni.</p>
+        </div>
+
+        <i class="fa-solid fa-user-graduate"></i>
+      </div>
+
+      <div class="card-container">
+        <div class="card-box">
+          <h3>Status Survey</h3>
+          <p>Belum Mengisi</p>
+        </div>
+
+        <div class="card-box">
+          <h3>Program Studi</h3>
+          <p>Teknik Informatika</p>
+        </div>
+
+        <div class="card-box">
+          <h3>Tahun Lulus</h3>
+          <p>2025</p>
+        </div>
+      </div>
+
+      <div class="survey-box">
+        <h2>Tracer Study Alumni</h2>
+
+        <p>Klik tombol di bawah untuk mulai mengisi survey tracer study.</p>
+
+        <button class="primary-btn">Isi Survey</button>
+      </div>
+    </section>
+
+    <% } else if (user.role === "admin") { %>
+
+    <!-- DASHBOARD ADMIN -->
+
+    <section class="dashboard-section">
+      <div class="welcome-box">
+        <div>
+          <span class="badge-dashboard"> Dashboard Admin </span>
+
+          <h1>Selamat Datang, <%= user.nama %></h1>
+
+          <p>Kelola data tracer study dengan mudah dan modern.</p>
+        </div>
+
+        <i class="fa-solid fa-chart-line"></i>
+      </div>
+
+      <div class="card-container">
+        <div class="card-box">
+          <h3>Total Alumni</h3>
+          <p>120</p>
+        </div>
+
+        <div class="card-box">
+          <h3>Sudah Mengisi</h3>
+          <p>85</p>
+        </div>
+
+        <div class="card-box">
+          <h3>Belum Mengisi</h3>
+          <p>35</p>
+        </div>
+      </div>
+    </section>
+
+    <% } %>
+
+    <!-- FOOTER -->
+    <footer>
+      © 2026 Tracer Study Fakultas Teknik ♥️ Dibuat oleh Gunawan Rohadi,S.Kom
+    </footer>
+
+    <script>
+      const hamburger = document.querySelector(".hamburger");
+
+      const navLinks = document.querySelector(".nav-links");
+
+      hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+
+        hamburger.classList.toggle("open");
+      });
+    </script>
   </body>
 </html>

@@ -1,0 +1,58 @@
+<%- include('../layouts/header') %>
+
+<div class="dashboard">
+  <!-- Sidebar -->
+  <%- include('../layouts/sidebar') %>
+
+  <div class="main-content">
+    <!-- Navbar -->
+    <%- include('../layouts/navbar') %>
+
+    <div class="content">
+      <!-- Welcome Card -->
+      <div class="welcome-card">
+        <div>
+          <h2 class="text-center">Selamat Datang, <%= user.nama %></h2>
+
+          <p class="text-center">
+            Silakan lengkapi tracer study alumni Fakultas Teknik.
+          </p>
+        </div>
+
+        <i class="fa-solid fa-user-graduate"></i>
+      </div>
+
+      <!-- Statistik -->
+      <div class="cards">
+        <div class="card-box">
+          <h3>Status Survey</h3>
+
+          <p>Belum Mengisi</p>
+        </div>
+
+        <div class="card-box">
+          <h3>Tahun Lulus</h3>
+
+          <p>2025</p>
+        </div>
+
+        <div class="card-box">
+          <h3>Program Studi</h3>
+
+          <p>Teknik Informatika</p>
+        </div>
+      </div>
+
+      <!-- Tombol Survey -->
+      <div class="survey-box">
+        <h3>Tracer Study Alumni</h3>
+
+        <p>Klik tombol di bawah untuk mulai mengisi survey tracer study.</p>
+
+        <button class="survey-btn">Isi Survey</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../layouts/footer') %>
