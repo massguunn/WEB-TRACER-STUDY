@@ -2,10 +2,112 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title><%= title %></title>
+
+    <!-- FONT -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ICON -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/home.css" />
   </head>
+
   <body>
-    <h1>ini adalah halaman berita</h1>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="logo">
+        <i class="fa-solid fa-graduation-cap"></i>
+        Tracer Study
+      </div>
+
+      <!-- HAMBURGER -->
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="/">Beranda</a></li>
+
+        <li><a href="/berita" class="active">Berita</a></li>
+
+        <li><a href="#">Statistik</a></li>
+
+        <li><a href="#">Publikasi</a></li>
+
+        <% if (!user) { %>
+
+        <li>
+          <a href="/login" class="login-btn"> Login </a>
+        </li>
+
+        <% } else { %> <% if (user.role === "admin") { %>
+
+        <li class="dropdown">
+          <a href="#">
+            Kelola Data
+            <i class="fa-solid fa-chevron-down"></i>
+          </a>
+
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#"> Data Alumni </a>
+            </li>
+
+            <li>
+              <a href="#"> Data Survey </a>
+            </li>
+
+            <li>
+              <a href="#"> Data Berita </a>
+            </li>
+
+            <li>
+              <a href="#"> Data Admin </a>
+            </li>
+          </ul>
+        </li>
+
+        <% } %>
+
+        <li>
+          <a href="/logout" class="logout-btn"> Logout </a>
+        </li>
+
+        <% } %>
+      </ul>
+    </nav>
+
+    <h1 class="hero-title">
+      <span>berita</span>
+    </h1>
+    <!-- FOOTER -->
+    <footer>
+      © 2026 Tracer Study Fakultas Teknik ♥️ Dibuat oleh Gunawan Rohadi,S.Kom
+    </footer>
+
+    <script>
+      const hamburger = document.querySelector(".hamburger");
+
+      const navLinks = document.querySelector(".nav-links");
+
+      hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+
+        hamburger.classList.toggle("open");
+      });
+    </script>
   </body>
 </html>
