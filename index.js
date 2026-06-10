@@ -12,6 +12,7 @@ const port = 3000;
 const homeRoutes = require("./routes/homeRoutes");
 const loginRoutes = require("./routes/loginRoutes");
 const beritaRoutes = require("./routes/beritaRoutes");
+const statistikRoutes = require("./routes/statistikRoutes");
 
 //routes login admin dan user
 const adminDashboardRoutes = require("./routes/admin/dashboardRoutes");
@@ -54,6 +55,7 @@ app.use(
 app.use("/", homeRoutes);
 app.use("/", loginRoutes);
 app.use("/", beritaRoutes);
+app.use("/", statistikRoutes); 
 
 app.use("/admin", adminDashboardRoutes);
 app.use("/users", userDashboardRoutes);
